@@ -1,0 +1,161 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" accept="image/*">
+<button onclick="uploadImage()">Upload Image</button>
+
+<script>
+    function uploadImage() {
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+
+        if (file) {
+            var formData = new FormData();
+            formData.append('image', file);
+
+            // You can use Fetch API or XMLHttpRequest to send the file to the server
+            // Example using Fetch API
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Upload successful:', data);
+                // Handle success, update UI, etc.
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+                // Handle error, show error message, etc.
+            });
+        } else {
+            console.warn('No file selected');
+        }
+    }
+</script>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-the-Spot Image Upload</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" accept="image/*">
+<button onclick="uploadImage()">Upload Image</button>
+
+<div id="imageContainer"></div>
+
+<script>
+    function uploadImage() {
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+
+        if (file) {
+            var formData = new FormData();
+            formData.append('image', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Upload successful:', data);
+
+                // Display the uploaded image on the page
+                var imageContainer = document.getElementById('imageContainer');
+                var imgElement = document.createElement('img');
+                imgElement.src = data.imageUrl;
+                imgElement.alt = 'Uploaded Image';
+                imageContainer.appendChild(imgElement);
+
+                // Optionally, you can reset the file input
+                fileInput.value = '';
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+                // Handle error, show error message, etc.
+            });
+        } else {
+            console.warn('No file selected');
+        }
+    }
+</script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Camera Image Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #videoElement {
+            max-width: 100%;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<video id="videoElement" autoplay></video>
+<button onclick="captureImage()">choose file</button>
+
+<script>
+    function captureImage() {
+        const videoElement = document.getElementById('videoElement');
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        // Set the canvas dimensions to match the video
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+
+        // Draw the current frame from the video onto the canvas
+        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        // Convert the canvas content to a data URL representing a PNG image
+        const dataUrl = canvas.toDataURL('image/png');
+
+        // You can now send this data URL to your server or use it as needed
+        console.log('Captured image data URL:', dataUrl);
+    }
+
+    // Access the user's camera and display the video stream
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+            const videoElement = document.getElementById('videoElement');
+            videoElement.srcObject = stream;
+        })
+        .catch(function (error) {
+            console.error('Error accessing camera:', error);
+        });
+</script>
+
+</body>
+</html>
+
+
+

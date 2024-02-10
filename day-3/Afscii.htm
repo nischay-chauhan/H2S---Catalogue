@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller ASCII Code Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #seller-form {
+            max-width: 400px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Background pattern */
+        body::before {
+            content: "";
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAe0lEQVR42mP8/wcAAwAB/ABF6EyTAAAAAElFTkSuQmCC');
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="seller-form">
+        <h2>Seller Information</h2>
+        <form id="ascii-form" onsubmit="return validateForm()">
+            <label for="seller-name">Seller Name:</label>
+            <input type="text" id="seller-name" required>
+
+            <label for="ascii-code">ASCII Code:</label>
+            <textarea id="ascii-code" rows="4" required></textarea>
+
+            <button type="button" id="submit" onclick="nextTask()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var asciiCode = document.getElementById("ascii-code").value;
+
+            if (asciiCode.trim() === "") {
+                alert("Please fill in the ASCII Code field.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function nextTask() {
+            var asciiCode = document.getElementById("ascii-code").value;
+            if (asciiCode.trim().length > 0) {
+                parent.location.href = 'barcode.htm';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

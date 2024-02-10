@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Image Uploader</title>
+    <style>
+       body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #333;
+}
+
+#camera-preview {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#file-upload-container {
+    margin-top: 20px;
+}
+
+#upload-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#upload-button:hover {
+    background-color: #45a049;
+}
+
+#seller-form {
+    max-width: 400px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin: auto;
+    margin-top: 20px;
+}
+
+#image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.seller-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#submit-button {
+    margin-top: 20px;
+    background-color: #ff6600; /* Orange color */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+#submit-button:hover {
+    background-color: #e25d00;
+}
+
+    </style>
+</head>
+<body>
+
+    <h2>Seller Image Uploader</h2>
+
+    <div id="camera-preview">
+        <video id="camera" width="100%" height="100%" autoplay></video>
+    </div>
+
+    <button onclick="captureImage()">Capture Image</button>
+
+    <p>OR</p>
+
+    <div id="file-upload-container">
+        <label for="file-upload" id="upload-button">Select Images from Gallery</label>
+        <input type="file" id="file-upload" accept="image/*" multiple onchange="handleFileUpload(this.files)">
+    </div>
+
+    <form id="seller-form" onsubmit="return validateForm()">
+        <div id="image-container"></div>
+        <button id="submit-button" type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        const MAX_IMAGES = 3;
+        let uploadedImages = 0;
+
+        function submitForm() {
+            if (validateForm()) {
+                parent.location = 'Thank.htm';
+            }
+        }
+
+        async function setupCamera() {
+            const video = document.getElementById('camera');
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+            video.srcObject = stream;
+
+            return new Promise((resolve) => {
+                video.onloadedmetadata = () => {
+                    resolve(video);
+                };
+            });
+        }
+
+        async function captureImage() {
+            if (uploadedImages < MAX_IMAGES) {
+                const video = await setupCamera();
+
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const context = canvas.getContext('2d');
+
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                displaySellerImage(imageDataUrl);
+            } else {
+                alert("You have reached the maximum limit of images.");
+            }
+        }
+
+        function handleFileUpload(files) {
+            for (let i = 0; i < files.length; i++) {
+                if (uploadedImages < MAX_IMAGES) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        const imageDataUrl = e.target.result;
+                        displaySellerImage(imageDataUrl);
+                    };
+
+                    reader.readAsDataURL(files[i]);
+                } else {
+                    alert("You have reached the maximum limit of images.");
+                    break;
+                }
+            }
+        }
+
+        function displaySellerImage(imageDataUrl) {
+            const imageContainer = document.getElementById('image-container');
+            const img = document.createElement('img');
+            img.src = imageDataUrl;
+            img.className = 'seller-image';
+            imageContainer.appendChild(img);
+            uploadedImages++;
+        }
+
+        function validateForm() {
+            if (uploadedImages < MAX_IMAGES) {
+                alert("Please upload  3 images before submitting.");
+                return false;
+            }
+            // Additional validation logic can be added here if needed
+            return true;
+        }
+    </script>
+
+</body>
+</html>

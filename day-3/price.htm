@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical; /* Allow vertical resizing of textarea */
+        }
+        ul {
+            list-style-type: disc; /* Use bullets for list items */
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sell Your Product</h1>
+
+    <form id="productForm">
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" placeholder="Enter the price of your product...">
+
+        <label for="nutritionalValue">Nutritional Value:</label>
+        <input type="text" id="nutritionalValue" name="nutritionalValue" placeholder="Enter the nutritional value of your product...">
+
+        <label for="ingredients">Ingredients:</label>
+        <textarea id="ingredients" name="ingredients" placeholder="Enter the ingredients of your product..."></textarea>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            var price = document.getElementById('price').value;
+            var nutritionalValue = document.getElementById('nutritionalValue').value;
+            var ingredients = document.getElementById('ingredients').value;
+
+            // You can perform further actions with the product information, such as sending it to a server.
+
+            // For now, let's just display the entered information in an alert.
+            alert('Price: ' + price + '\n\nNutritional Value: ' + nutritionalValue + '\n\nIngredients:\n' + ingredients);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-image: url('https://source.unsplash.com/1920x1080/?search'); /* Replace with your preferred background image */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+
+    #search-container {
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #search-bar {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #category-container {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category {
+      margin: 10px;
+      padding: 20px;
+      background-color: #3498db;
+      color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+      width: 200px;
+      text-align: center;
+    }
+
+    .category h2 {
+      margin-bottom: 10px;
+    }
+
+    .category:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search for food, fashion, furniture, vehicles, books, or boxes">
+  </div>
+
+  <div id="category-container"></div>
+
+  <script>
+    const categories = ['Food', 'Fashion', 'Furniture', 'Vehicles', 'Books', 'Boxes'];
+
+    const searchContainer = document.getElementById('category-container');
+    const searchBar = document.getElementById('search-bar');
+
+    // Initial display of all categories
+    displayResults(categories);
+
+    searchBar.addEventListener('input', updateSearchResults);
+
+    function updateSearchResults() {
+      const searchTerm = searchBar.value.toLowerCase();
+      const filteredCategories = categories.filter(category => category.toLowerCase().includes(searchTerm));
+      displayResults(filteredCategories);
+    }
+
+    function displayResults(categoriesToDisplay) {
+      searchContainer.innerHTML = '';
+
+      categoriesToDisplay.forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.classList.add('category');
+
+        const categoryName = document.createElement('h2');
+        categoryName.textContent = category;
+
+        categoryDiv.onclick = function() {
+          // Redirect to a specific page based on the selected category
+          window.location.href = category.toLowerCase() + '.htm';
+        };
+
+        categoryDiv.appendChild(categoryName);
+        searchContainer.appendChild(categoryDiv);
+      });
+    }
+  </script>
+
+</body>
+
+</html>

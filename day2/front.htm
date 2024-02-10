@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Sign Up Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #D0D4CA;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-signup-choice {
+      margin-bottom: 20px;
+    }
+
+    .login-signup-choice a {
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+    }
+
+    #login-form,
+    #signup-form {
+      display: none;
+    }
+
+    input[type="submit"],
+    input[type="button"] {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="login-signup-choice">
+      <p>Existing User? <a href="#" onclick="showLoginForm()">Login</a></p>
+      <p>New User? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
+    </div>
+
+    <form id="login-form">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" required><br><br>
+      <input type="password" placeholder="Password" required><br><br>
+      <input type="submit" value="Login">
+    </form>
+
+    <form id="signup-form" onsubmit="return validateSignUpForm()">
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="First Name" id="firstName" required><br><br>
+      <input type="text" placeholder="Last Name" id="lastName" required><br><br>
+      <input type="email" placeholder="Email id" id="email" required><br><br>
+      <input type="password" placeholder="Password" id="password" required><br><br>
+      <input type="number" placeholder="Mobile number" id="mobileNumber" required><br><br>
+      <input type="button" class="Sign" value="Sign Up" onclick="validate_it()">
+    </form>
+  </div>
+
+  <script>
+    function showLoginForm() {
+      document.getElementById("login-form").style.display = "block";
+      document.getElementById("signup-form").style.display = "none";
+    }
+
+    function showSignupForm() {
+      document.getElementById("signup-form").style.display = "block";
+      document.getElementById("login-form").style.display = "none";
+    }
+
+    function validateSignUpForm() {
+      // Add your custom validation logic here
+      var firstName = document.getElementById("signup-form").elements["firstName"].value;
+      var lastName = document.getElementById("signup-form").elements["lastName"].value;
+      var email = document.getElementById("signup-form").elements["email"].value;
+      var password = document.getElementById("signup-form").elements["password"].value;
+      var mobileNumber = document.getElementById("signup-form").elements["mobileNumber"].value;
+
+      // Example: Check if any field is empty
+      if (!firstName || !lastName || !email || !password || !mobileNumber) {
+        alert("Please fill in all the fields.");
+        return false; // Prevent form submission
+      }
+
+      // Add more validation if needed
+
+      return true; // Allow form submission
+    }
+
+    function validate_it() {
+      if (validateSignUpForm()) {
+        parent.location.href = 'search.htm'     }
+    }
+  </script>
+
+</body>
+</html>

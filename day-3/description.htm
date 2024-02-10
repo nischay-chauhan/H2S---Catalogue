@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+        }
+        button {
+            /* background-color: #4CAF50; */
+            background-color: grey;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sell Your Product</h1>
+
+    <form id="productForm">
+        <label for="productDescription">Product Description:</label>
+        <textarea id="productDescription" name="productDescription" placeholder="Enter a description of your product..."></textarea>
+
+        <label for="asciiCode">ASCII Code:</label>
+        <input type="text" id="asciiCode" name="asciiCode" placeholder="Enter the ASCII code of your product...">
+
+        <label for="barcodeImage">Barcode Image:</label>
+        <input type="file" id="barcodeImage" name="barcodeImage" accept="image/*">
+        <button type="button" onclick="captureBarcode()">Capture using Camera</button><br><br>
+
+        <label for="gstNumber">GST Number:</label>
+        <input type="text" id="gstNumber" name="gstNumber" placeholder="Enter the GST number of your product..."><br>
+
+        <label for="productImages">Product Images:</label>
+        <input type="file" id="productImages" name="productImages" accept="image/*" multiple>
+        <button type="button" onclick="captureProductImages()">Capture using Camera</button>
+
+        <button type="button" onclick="submitForm()" style="background-color: green;">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            var productDescription = document.getElementById('productDescription').value;
+            var asciiCode = document.getElementById('asciiCode').value;
+            var barcodeImage = document.getElementById('barcodeImage').value;
+            var gstNumber = document.getElementById('gstNumber').value;
+
+            // You can perform further actions with the product information, such as sending it to a server.
+
+            // For now, let's just display the entered information in an alert.
+            alert('Product Description:\n' + productDescription + 
+                  '\n\nASCII Code:\n' + asciiCode +
+                  '\n\nBarcode Image:\n' + barcodeImage +
+                  '\n\nGST Number:\n' + gstNumber);
+
+            // You may want to handle product images separately.
+            // Example: Call a function to process product images.
+            processProductImages();
+        }
+
+        function captureBarcode() {
+            // Implement logic to capture barcode using the camera functionality.
+            // This can involve additional JavaScript and may require a library or API.
+            // For simplicity, you may want to use a barcode scanning library.
+            alert('Capture barcode using the camera functionality would be implemented here.');
+        }
+
+        function captureProductImages() {
+            // Access the device camera using WebRTC API.
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    // Display the video stream in a video element.
+                    var video = document.createElement('video');
+                    video.srcObject = stream;
+                    video.autoplay = true;
+
+                    // Append the video element to the form or another part of the page.
+                    document.getElementById('productForm').appendChild(video);
+
+                    // Add a button to capture an image from the camera stream.
+                    var captureButton = document.createElement('button');
+                    captureButton.textContent = 'Capture Image';
+                    captureButton.onclick = function () {
+                        captureImageFromCamera(stream);
+                    };
+
+                    // Append the capture button to the form.
+                    document.getElementById('productForm').appendChild(captureButton);
+                })
+                .catch(function (error) {
+                    console.error('Error accessing camera:', error);
+                });
+        }
+
+        function captureImageFromCamera(stream) {
+            // Capture an image from the camera stream using a canvas element.
+            var video = document.querySelector('video');
+            var canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convert the canvas image to a data URL.
+            var imageDataUrl = canvas.toDataURL('image/png');
+
+            // Display the captured image.
+            var capturedImage = document.createElement('img');
+            capturedImage.src = imageDataUrl;
+            document.getElementById('productForm').appendChild(capturedImage);
+
+            // Stop the camera stream.
+            stream.getTracks().forEach(track => track.stop());
+        }
+
+        function processProductImages() {
+            // Implement logic to handle product images (e.g., upload to server).
+            var fileInput = document.getElementById('productImages');
+            var files = fileInput.files;
+
+            for (var i = 0; i < files.length; i++) {
+                // Process each file, e.g., upload to server.
+                // You can use the FormData API for file uploads.
+                var formData = new FormData();
+                formData.append('productImage', files[i]);
+
+                // Perform an AJAX request to upload the file.
+                // Example: You can use the fetch API or another AJAX library.
+                // Replace the placeholder URL with your actual upload endpoint.
+                fetch('https://example.com/upload', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => console.log('File uploaded successfully:', data))
+                .catch(error => console.error('Error uploading file:', error));
+            }
+        }
+    </script>
+
+</body>
+</html>

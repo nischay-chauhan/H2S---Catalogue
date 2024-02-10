@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url(https://e0.pxfuel.com/wallpapers/322/204/desktop-wallpaper-professional-blue-background-good-professional-young-professional-and-professional-blue-blur.jpg);
+      /* object-fit: cover; */
+      background-repeat: no-repeat;
+      background-size: cover;
+
+    }
+
+    .signup-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      /* box-shadow: 10px 10px 10px rgba(218, 47, 47, 0.1); */
+      width: 300px;
+      max-width: 100%;
+      opacity: 0.9;
+      filter: drop-shadow();
+
+    }
+
+    .signup-container h2 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .signup-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .signup-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+  <title>Sign Up Page</title>
+</head>
+<body>
+
+  <div class="signup-container">
+    <h2>Sign Up</h2>
+    <form>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" placeholder="Enter your first name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" placeholder="Enter your last name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="tel" id="mobileNumber" placeholder="Enter your mobile number" required>
+      </div>
+
+      <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+  </div>
+
+</body>
+</html>

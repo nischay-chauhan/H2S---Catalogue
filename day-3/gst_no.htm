@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product GST Number Input</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: rgba(52, 52, 146, 0.258);
+            justify-content: center;
+align-items: center;
+    height: 100vh;
+            color: white;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: black;
+        }
+
+        #gst-form {
+    max-width: 400px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Adjust the third parameter for brightness */
+    margin: auto; /* Center the form horizontally */
+    margin-top: 20px; /* Add top margin for spacing */
+}
+
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Product GST Number Input</h2>
+
+    <form id="gst-form" onsubmit="return validateForm()">
+        <label for="gst-number">Enter GST Number:</label>
+        <input type="text" id="gst-number" required>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            var gstNumber = document.getElementById("gst-number").value;
+
+            if (gstNumber.trim() === "") {
+                alert("Please fill in the GST Number field.");
+                return false;
+            }
+
+            // Additional validation logic for GST number format can be added here
+
+            // If all validations pass, the form will be submitted
+            return true;
+        }
+
+        function submitForm() {
+            if (validateForm()) {
+                parent.location = 'Product_image.htm';
+            }
+        }
+    </script>
+
+</body>
+</html>

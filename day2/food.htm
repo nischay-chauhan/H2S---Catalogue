@@ -1,0 +1,154 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell Food</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    #question-container {
+      margin-top: 50px;
+      background-color: #3498db;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 400px; /* Limit maximum width for better readability */
+    }
+
+    #options-container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%; /* Same width as the question box */
+      max-width: 400px; /* Limit maximum width for better readability */
+    }
+
+    .option {
+      margin: 10px;
+      padding: 15px;
+      background-color: #fff;
+      color: #3498db;
+      border: 1px solid #3498db;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      width: 100%; /* Make the width same as the question box */
+      box-sizing: border-box; /* Include padding and border in the element's total width */
+    }
+
+    .option:hover {
+      background-color: #3498db;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="question-container">
+    <h2>Which type of product do you want to sell?</h2>
+  </div>
+
+  <div id="options-container">
+    <div class="option" onclick=" parent.location='Desc.htm'" >Packed</div>
+    <div class="option" onclick="selectOption('Unpacked')">Unpacked</div>
+  </div>
+
+  <script>
+   
+  </script>
+
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell Food</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    #question-container {
+      margin-top: 50px;
+      background-color: #3498db;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 400px; /* Limit maximum width for better readability */
+    }
+
+    #options-container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%; /* Same width as the question box */
+      max-width: 400px; /* Limit maximum width for better readability */
+    }
+
+    .option {
+      margin: 10px;
+      padding: 15px;
+      background-color: #fff;
+      color: #3498db;
+      border: 1px solid #3498db;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      width: 100%; /* Make the width same as the question box */
+      box-sizing: border-box; /* Include padding and border in the element's total width */
+    }
+
+    .option:hover {
+      background-color: #3498db;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="question-container">
+    <h2>Which type of product do you want to sell?</h2>
+  </div>
+
+  <div id="options-container">
+    <div class="option" onclick="window.location.href='../day-3/Desc.htm'">Packed</div>
+    <div class="option"  onclick="window.location.href='../day-3/Desc.htm'">Unpacked</div>
+  </div>
+
+  <script>
+    function selectOption(option) {
+      console.log('Selected option:', option);
+      // You can add more logic here if needed
+    }
+  </script>
+
+</body>
+</html>
+
